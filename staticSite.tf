@@ -6,7 +6,7 @@ variable "aws_access_key" {}
 variable "aws_secret_key" {}
 variable "private_key_path" {}
 variable "key_name" {
-  default = "zvSRE"
+  default = "tfDemoPair"
 }
 
 ##################################################################################
@@ -23,7 +23,7 @@ provider "aws" {
 # RESOURCES
 ##################################################################################
 
-resource "aws_instance" "nginx" {
+resource "aws_instance" "nginxServer" {
   ami           = "ami-c58c1dd3"
   instance_type = "t2.micro"
   key_name        = "${var.key_name}"
@@ -46,5 +46,5 @@ resource "aws_instance" "nginx" {
 ##################################################################################
 
 output "aws_instance_public_dns" {
-    value = "${aws_instance.nginx.public_dns}"
+    value = "${aws_instance.nginxServer.public_dns}"
 }
