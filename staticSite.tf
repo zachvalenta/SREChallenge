@@ -16,7 +16,7 @@ variable "key_name" {
 provider "aws" {
   access_key = "${var.aws_access_key}"
   secret_key = "${var.aws_secret_key}"
-  region     = "us-east-1"
+  region     = "us-east-2"
 }
 
 ##################################################################################
@@ -24,7 +24,7 @@ provider "aws" {
 ##################################################################################
 
 resource "aws_instance" "nginxServer" {
-  ami           = "ami-c58c1dd3"
+  ami           = "ami-3883a55d"
   instance_type = "t2.micro"
   key_name        = "${var.key_name}"
 
