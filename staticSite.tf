@@ -37,6 +37,7 @@ resource "aws_instance" "nginxServer" {
   connection {
     # default user for all EC2 instances
     user        = "ec2-user"
+    timeout     = "30s"
     private_key = "${file(var.private_key_path)}"
   }
 
@@ -53,6 +54,10 @@ resource "aws_instance" "nginxServer" {
 # OUTPUT
 ####################
 
-output "aws_instance_public_dns" {
+output "dns" {
     value = "${aws_instance.nginxServer.public_dns}"
+}
+
+output "ip" {
+    value = "${aws_instance.nginxServer.public_ip}"
 }
