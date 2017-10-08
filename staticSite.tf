@@ -10,16 +10,9 @@ variable "aws_secret_key" {}
 variable "key_name" {}
 variable "private_key_path" {}
 
-# sg
-variable "security_group_id" {}
-
 ####################
 # DATA
 ####################
-
-# data "aws_security_group" "selected" {
-#   id = "${var.security_group_id}"
-# }
 
 ####################
 # PROVIDERS
@@ -36,32 +29,26 @@ provider "aws" {
 # RESOURCES
 ####################
 
-# https://www.terraform.io/docs/providers/aws/d/security_group.html
-# resource "aws_subnet" "subnet" {
-#   vpc_id     = "${data.aws_security_group.selected.vpc_id}"
-#   cidr_block = "10.0.1.0/24"
-# }
-
 resource "aws_instance" "nginxServer" {
   # this AMI specific to us-east-2
   ami           = "ami-3883a55d"
   instance_type = "t2.micro"
   key_name      = "${var.key_name}"
 
-  connection {
-    # default user for all EC2 instances
-    user        = "ec2-user"
-    timeout     = "30s"
-    private_key = "${file(var.private_key_path)}"
-  }
+  # connection {
+  #   # default user for all EC2 instances
+  #   user        = "ec2-user"
+  #   timeout     = "30s"
+  #   private_key = "${file(var.private_key_path)}"
+  # }
 
-  provisioner "remote-exec" {
-    inline = [
-      # - y for preemptive prompt to yum update request
-      "sudo yum install nginx -y",
-      "sudo service nginx start"
-    ]
-  }
+  # provisioner "remote-exec" {
+  #   inline = [
+  #     # - y for preemptive prompt to yum update request
+  #     "sudo yum install nginx -y",
+  #     "sudo service nginx start"
+  #   ]
+  # }
 }
 
 ####################
