@@ -13,12 +13,24 @@ provider "aws" {
 # RESOURCES
 ####################
 
+resource "aws_security_group" "ssh_only" {
+  name            = "allow_ssh"
+  description     = "allow SSH connections"
+
+  ingress {
+    from_port     = 22
+    to_port       = 22
+    protocol      = "tcp"
+    cidr_blocks   = ["0.0.0.0/0"]
+  }
+}
+
 resource "aws_instance" "nginxServer" {
   # AMI specific to us-east-1
   ami           = "ami-8c1be5f6"
   instance_type = "t2.micro"
   key_name      = "${var.key_name}"
-  security_groups= ["launch-wizard-1"]
+  security_groups= ["allow_ssh"]
   tags {
       Name = "nginxServer"
   }
