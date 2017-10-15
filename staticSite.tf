@@ -14,13 +14,13 @@ provider "aws" {
 ####################
 
 resource "aws_instance" "nginxServer" {
-  # this AMI specific to us-east-2
+  # AMI specific to us-east-1
   ami           = "ami-8c1be5f6"
   instance_type = "t2.micro"
   key_name      = "${var.key_name}"
   security_groups= ["launch-wizard-1"]
   tags {
-      Name = "tfDemoUpdatedAMI"
+      Name = "nginxServer"
   }
 
   # connection {
