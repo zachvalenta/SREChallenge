@@ -4,9 +4,9 @@
 
 provider "aws" {
   # authenticate IAM user
-  access_key = "${var.aws_access_key}"
-  secret_key = "${var.aws_secret_key}"
-  region     = "us-east-1"
+  access_key      = "${var.aws_access_key}"
+  secret_key      = "${var.aws_secret_key}"
+  region          = "us-east-1"
 }
 
 ####################
@@ -27,10 +27,10 @@ resource "aws_security_group" "ssh_only" {
 
 resource "aws_instance" "nginxServer" {
   # AMI specific to us-east-1
-  ami           = "ami-8c1be5f6"
-  instance_type = "t2.micro"
-  key_name      = "${var.key_name}"
-  security_groups= ["allow_ssh"]
+  ami             = "ami-8c1be5f6"
+  instance_type   = "t2.micro"
+  key_name        = "${var.key_name}"
+  security_groups = ["allow_ssh"]
   tags {
       Name = "nginxServer"
   }
@@ -56,5 +56,5 @@ resource "aws_instance" "nginxServer" {
 ####################
 
 output "dns" {
-    value = "${aws_instance.nginxServer.public_dns}"
+    value         = "${aws_instance.nginxServer.public_dns}"
 }
