@@ -35,20 +35,21 @@ resource "aws_instance" "nginxServer" {
       Name = "nginxServer"
   }
 
-  # connection {
-  #   # default user for all EC2 instances
-  #   user        = "ec2-user"
-  #   timeout     = "30s"
-  #   private_key = "${file(var.private_key_path)}"
-  # }
+  connection {
+    # default user for all EC2 instances
+    user          = "ec2-user"
+    timeout       = "30s"
+    # private_key = "${file("/Users/zach/Desktop/aws_creds/EC2/ZVregion1Default.pem")}"
+    private_key   = "${file(var.private_key_path)}"
+  }
 
-  # provisioner "remote-exec" {
-  #   inline = [
-  #     # - y for preemptive prompt to yum update request
-  #     "sudo yum install nginx -y",
-  #     "sudo service nginx start"
-  #   ]
-  # }
+  provisioner "remote-exec" {
+    inline = [
+      # - y for preemptive prompt to yum update request
+      "sudo yum install nginx -y",
+      "sudo service nginx start"
+    ]
+  }
 }
 
 ####################
