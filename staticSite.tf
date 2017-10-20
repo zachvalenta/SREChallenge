@@ -14,7 +14,7 @@ provider "aws" {
 ####################
 
 resource "aws_security_group" "ssh_only" {
-  name            = "allow_ssh"
+  name            = "nginxServer_sg"
   description     = "allow SSH connections"
 
   ingress {
@@ -37,7 +37,7 @@ resource "aws_instance" "nginxServer" {
   ami             = "ami-8c1be5f6"
   instance_type   = "t2.micro"
   key_name        = "${var.key_name}"
-  security_groups = ["allow_ssh"]
+  security_groups = ["nginxServer_sg"]
   tags {
       Name = "nginxServer"
   }
