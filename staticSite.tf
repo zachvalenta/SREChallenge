@@ -23,6 +23,14 @@ resource "aws_security_group" "ssh_only" {
     protocol      = "tcp"
     cidr_blocks   = ["0.0.0.0/0"]
   }
+
+  ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
 # debug for failed yum update led to egress rule [https://stackoverflow.com/questions/20822021/amazon-ec2-instance-cant-update-or-use-yum]
   egress {
     from_port     = 0
