@@ -8,39 +8,57 @@ DEPENDENCIES
 
 Before getting started, you'll need the following:
 
-  - [AWS account](https://aws.amazon.com/account/) w/ user whose IAM policy enables creation of EC2 instances
+  - [AWS account](https://aws.amazon.com/account/) 
+  - AWS user whose [IAM policy](https://aws.amazon.com/iam/) enables creation of EC2 instances (like AmazonEC2FullAccess)
+  - [EC2 key pair] (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html)
   - [Terraform CLI](https://www.terraform.io/intro/getting-started/install.html)
 
 EXECUTION
 -------------------------------
 
-To run this example, store the following:
-
-  - [AWS access keys for user](http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html) 
-  - file path to [key pair for EC2 instance](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html#having-ec2-create-your-key-pair)
-
-in a `staticSite.tfvars` file above the directory holding the `staticSite.tf` configuration file:
-
+First, make a `config` directory and put your main TF configuration `staticSite.tf` inside:
 ```sh
-staticSite.tfvars
 ├── config
 │   └── staticSite.tf
 
 ```
 
-with values stored in variables: 
+Next, add an HTML asset to the same directory:
+```sh
+├── config
+│   └── staticSite.tf
+	└── index.html
 
 ```
-aws_access_key = "yourAccessKeyHere"
+
+then store the following:
+
+  - AWS access keys for IAM user
+  - EC2 key pair name and path to private key
+
+in a `staticSite.tfvars` file above `config`:
+```sh
+staticSite.tfvars
+├── config
+│   └── staticSite.tf
+	└── index.html
+
 ```
 
-matching the variable names in `staticSite.tf`:
+`staticSite.tfvars` stores private values: 
+```
+aws_access_key = "foo123"
+```
+
+`staticSite.tf` uses those values in variables:
 ```
 variable "aws_access_key" {}
 ```
 
-then run the following from the directory holding your `staticSite.tf` file:
+Finally, run the following:
 
 ```sh
 $ terraform apply -var-file='../staticSite.tfvars'
 ```
+
+inside the `config` directory to create your infrastructure!
