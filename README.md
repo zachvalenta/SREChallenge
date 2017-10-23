@@ -8,7 +8,7 @@ DEPENDENCIES
 
 Before getting started, you'll need the following:
 
-  - [AWS account](https://aws.amazon.com/account/) w/ user whose IAM policy enables creation of EC2 instance
+  - [AWS account](https://aws.amazon.com/account/) w/ user whose IAM policy enables creation of EC2 instances
   - [Terraform CLI](https://www.terraform.io/intro/getting-started/install.html)
 
 EXECUTION
