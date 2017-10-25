@@ -10,7 +10,7 @@ Before getting started, you'll need the following:
 
   - [AWS account](https://aws.amazon.com/account/) 
   - AWS user whose [IAM policy](https://aws.amazon.com/iam/) enables creation of EC2 instances (like AmazonEC2FullAccess)
-  - [EC2 key pair] (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html)
+  - [EC2 key pair](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html)
   - [Terraform CLI](https://www.terraform.io/intro/getting-started/install.html)
 
 EXECUTION
@@ -27,7 +27,7 @@ Next, add an HTML asset to the same directory:
 ```sh
 ├── config
 │   └── staticSite.tf
-	└── index.html
+    └── index.html
 
 ```
 
@@ -41,7 +41,7 @@ in a `staticSite.tfvars` file above `config`:
 staticSite.tfvars
 ├── config
 │   └── staticSite.tf
-	└── index.html
+    └── index.html
 
 ```
 
